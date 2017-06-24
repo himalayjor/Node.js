@@ -1,0 +1,23 @@
+{
+  "name": "rectangle",
+  "version": "1.0.0",
+  "description": "First Node module by himalayj",
+  "main": "rectangle-3.js",
+  "dependencies": {
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/himalayjor/Node.js.git"
+  },
+  "author": "Himalay Mohan Joriwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/himalayjor/Node.js/issues"
+  },
+  "homepage": "https://github.com/himalayjor/Node.js#readme"
+}
