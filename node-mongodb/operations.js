@@ -1,25 +1,33 @@
 var assert = require('assert');
 
-exports.insertDocument = function(db, document, collection, callback) {
+exports.insertDocument = function(db, document, collection) {
       // Get the documents collection
-  var coll = db.collection(collection);
-      // Insert some documents
-  coll.insert(document, function(err, result) {
-    assert.equal(err, null);
-    console.log("Inserted " + result.result.n + " documents into the document collection "
-                 + collection);
-    callback(result);
-  });
+
+    return new Promise(function(resolve, reject) {
+
+        var coll = db.collection(collection);
+        // Insert some documents
+        coll.insert(document, function(err, result) {
+            assert.equal(err, null);
+            console.log("Inserted " + result.result.n + " documents into the document collection "
+                + collection);
+            resolve(result);
+        });
+    });
+
 };
 
-exports.findDocuments = function(db, collection, callback) {
-  // Get the documents collection
-  var coll = db.collection(collection);
+exports.findDocuments = function(db, collection) {
 
-  // Find some documents
-  coll.find({}).toArray(function(err, docs) {
-    assert.equal(err, null);
-    callback(docs);
+  return new Promise(function(resolve, reject) {
+      // Get the documents collection
+      var coll = db.collection(collection);
+
+      // Find some documents
+      coll.find({}).toArray(function(err, docs) {
+          assert.equal(err, null);
+          resolve(docs);
+      });
   });
 };
 
@@ -36,17 +44,18 @@ exports.removeDocument = function(db, document, collection, callback) {
   });
 };
 
-exports.updateDocument = function(db, document, update, collection, callback) {
+exports.updateDocument = function(db, document, update, collection) {
 
-  // Get the documents collection
-  var coll = db.collection(collection);
+  return new Promise(function(resolve, reject) {
+      // Get the documents collection
+      var coll = db.collection(collection);
 
-  // Update document
-  coll.updateOne(document
-    , { $set: update }, null, function(err, result) {
-
-    assert.equal(err, null);
-    console.log("Updated the document with " + update);
-    callback(result);
+      // Update document
+      coll.updateOne(document, { $set: update }, null, function(err, result) {
+              assert.equal(err, null);
+              console.log("Updated the document with " + update);
+              resolve(result);
+      });
   });
+
 };
